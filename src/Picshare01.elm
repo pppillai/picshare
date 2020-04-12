@@ -18,21 +18,22 @@ baseUrl =
     "http://localhost:5000/"
 
 
-detailedViewPhoto : String -> String -> Html msg
-detailedViewPhoto finalUrl caption =
+detailedViewPhoto : {url: String, caption: String} -> Html msg
+detailedViewPhoto model =
     div [ class "detailed-photo" ]
-        [ img [ src finalUrl ] []
-        , div [ class "photo-info" ] [ h2 [] [ text caption ] ]
+        [ img [ src model.url ] []
+        , div [ class "photo-info" ] [ h2 [] [ text model.caption ] ]
         ]
 
 
-main : Html msg
-main =
+view : {url: String, caption: String} -> Html msg
+view model =
     div []
         [ div [ class "header" ] [ h1 [] [ text "Picshare" ] ]
         , div [ class "content-flow" ]
-            [ detailedViewPhoto (baseUrl ++ "1.jpg") "Surfing"
-            , detailedViewPhoto (baseUrl ++ "2.jpg") "The Fox"
-            , detailedViewPhoto (baseUrl ++ "3.jpg") "Evening"
-            ]
+            [ detailedViewPhoto model ]
         ]
+
+main: Html msg
+main =
+    view initialModel
