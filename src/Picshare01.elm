@@ -6,14 +6,19 @@ import Html.Attributes exposing (class, src, placeholder, type_, disabled, value
 import Html.Events exposing (onClick, onSubmit, onInput)
 
 
-type alias Model =
-    {
-        url: String
-        , caption: String
-        , liked: Bool
-        , newComment: String
-        , comments: List String
+type alias Id =
+    Int
+
+type alias Photo =
+    { id: Id
+    , url: String
+    , caption: String
+    , liked: Bool
+    , newComment: String
+    , comments: List String
     }
+type alias Model =
+    Photo
 
 
 type Msg =
@@ -29,12 +34,13 @@ baseUrl =
 
 initialModel: Model
 initialModel =
-    { url = baseUrl ++ "1.jpg"
-     , caption = "Surfing"
-     , liked = False
-     , newComment = ""
-     , comments = ["Cowobanga Dude!"]
-     }
+    { id = 1
+    , url = baseUrl ++ "1.jpg"
+    , caption = "Surfing"
+    , liked = False
+    , newComment = ""
+    , comments = ["Cowobanga Dude!"]
+    }
 
 
 viewComment: String -> Html Msg
